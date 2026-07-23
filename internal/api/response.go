@@ -1,0 +1,20 @@
+package api
+
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
+func jsonError(c *gin.Context, status int, code string, message string) {
+	c.JSON(status, gin.H{
+		"error": gin.H{
+			"code":    code,
+			"message": message,
+		},
+	})
+}
+
+func notFound(c *gin.Context) {
+	jsonError(c, http.StatusNotFound, "not_found", "resource not found")
+}

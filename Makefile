@@ -6,8 +6,8 @@ export GOPATH := $(GO_CACHE_DIR)/path
 export GOMODCACHE := $(GO_CACHE_DIR)/mod
 export GOCACHE := $(GO_CACHE_DIR)/build
 
-test:
-	go test ./...
+test: frontend-build
+	go test ./cmd/... ./internal/...
 	cd frontend && npm run test:unit -- --run
 
 frontend-build:
